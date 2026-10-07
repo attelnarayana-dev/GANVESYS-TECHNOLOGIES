@@ -12,13 +12,14 @@
   },
   "dependencies": {
     "@prisma/client": "^6.16.2",
+    "bcryptjs": "^2.4.3",
+    "jose": "^6.1.0",
     "next": "^15.5.27",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "bcryptjs": "^2.4.3",
-    "jose": "^6.1.0"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.16.2",
     "prisma": "^6.16.2",
     "tsx": "^4.19.1"
   }
