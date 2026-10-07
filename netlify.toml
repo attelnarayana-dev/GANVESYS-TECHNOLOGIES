@@ -1,8 +1,6 @@
 [build]
   command = "npm run build"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
-
-# Netlify automatically provisions the Next.js OpenNext runtime.
-# Keep the adapter unpinned so security updates can be picked up automatically.
