@@ -1,0 +1,53 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql" }
+
+enum Role { SUPER_ADMIN ADMIN SALES }
+enum LeadStatus { NEW CONTACTED QUALIFIED PROPOSAL WON LOST }
+enum AuditAction { LOGIN LEAD_CREATED LEAD_UPDATED USER_CREATED }
+
+model User {
+  id           String      @id @default(cuid())
+  name         String
+  email        String      @unique
+  passwordHash String
+  role         Role        @default(ADMIN)
+  active       Boolean     @default(true)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  audits       AuditLog[]
+}
+
+model Lead {
+  id          String     @id @default(cuid())
+  name        String
+  email       String
+  company     String?
+  phone       String?
+  service     String?
+  message     String?
+  status      LeadStatus @default(NEW)
+  source      String     @default("WEBSITE")
+  assignedTo  String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  notes       LeadNote[]
+}
+
+model LeadNote {
+  id        String   @id @default(cuid())
+  leadId    String
+  author    String
+  body      String
+  createdAt DateTime @default(now())
+  lead      Lead     @relation(fields:[leadId],references:[id],onDelete:Cascade)
+}
+
+model AuditLog {
+  id        String      @id @default(cuid())
+  action    AuditAction
+  userId    String?
+  entityId  String?
+  metadata  String?
+  createdAt DateTime    @default(now())
+  user      User?       @relation(fields:[userId],references:[id],onDelete:SetNull)
+}

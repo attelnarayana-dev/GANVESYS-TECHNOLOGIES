@@ -1,0 +1,16 @@
+import {Shell,RevealCard} from "../components";
+
+const services=[
+ {slug:"software-engineering",tag:"01 · BUILD",title:"Software Engineering",text:"Business applications, web platforms, APIs and internal tools engineered for reliability and growth.",icon:"⌘"},
+ {slug:"ai-automation",tag:"02 · INTELLIGENCE",title:"AI & Automation",text:"Practical AI workflows, assistants and automation that reduce repetitive work and improve decisions.",icon:"✦"},
+ {slug:"qa-test-automation",tag:"03 · QUALITY",title:"QA & Test Automation",text:"Functional testing, API validation, regression and automation frameworks across critical workflows.",icon:"✓"},
+ {slug:"cloud-devops",tag:"04 · INFRASTRUCTURE",title:"Cloud & DevOps",text:"Deployment foundations, CI/CD direction and operational practices designed for scale.",icon:"☁"},
+ {slug:"cyber-security",tag:"05 · PROTECTION",title:"Cyber Security",text:"Secure authentication foundations, access controls and security-minded application delivery.",icon:"◈"},
+ {slug:"data-digital-transformation",tag:"06 · DATA",title:"Data & Digital Transformation",text:"Connected data flows, reporting foundations and process modernization.",icon:"◌"}
+];
+
+export default function Services(){return <Shell>
+ <section className="splitHero servicesHero"><div className="wrap serviceHeroGrid"><div><div className="eyebrow">Capabilities / 06 disciplines</div><h1>Deep capability.<br/><span className="gradientText">One engineering mindset.</span></h1><p className="heroCopy">Explore the disciplines behind the GANVESYS approach. Each capability has its own delivery method — and they are designed to work together.</p><div className="actions"><a className="btn primary" href="/contact">Discuss a requirement ↗</a><a className="btn" href="#capabilities">Explore capabilities</a><a className="btn" href="/projects">See projects</a></div></div><div className="serviceIndex" aria-hidden="true">{services.map((s,i)=><div className="serviceIndexRow" key={s.slug}><span>0{i+1}</span><b>{s.title}</b><i>↗</i></div>)}</div></div></section>
+ <section id="capabilities"><div className="wrap"><div className="sectionTop"><div><div className="eyebrow">Capability library</div><h2>Choose the discipline. Then go deeper.</h2></div><p>Every service page now explains the problem, delivery model, technical focus and expected outcome — without pretending to be a client case study.</p></div><div className="serviceGrid">{services.map(s=><RevealCard key={s.slug} {...s} />)}</div></div></section>
+ <section className="darkSection"><div className="wrap darkInner"><div className="sectionTop"><div><div className="eyebrow">Connected delivery</div><h2>Great products rarely need just one discipline.</h2></div><p>Software may need QA. AI may need data. A web platform may need cloud and security. GANVESYS keeps those connections visible from the beginning.</p></div><div className="serviceConstellation"><div className="constLine l1"/><div className="constLine l2"/><div className="constLine l3"/><div className="constCore">GV<br/><span>ENGINEERING</span></div>{services.slice(0,6).map((s,i)=><div className={`constNode cn${i+1}`} key={s.slug}><span>{s.icon}</span>{s.title}</div>)}</div></div></section>
+ </Shell>}
