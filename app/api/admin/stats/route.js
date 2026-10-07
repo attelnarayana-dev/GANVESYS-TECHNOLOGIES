@@ -1,5 +1,5 @@
 import {cookies} from "next/headers";
-import {verifySession} from "../../../lib/auth";
+import {verifySession} from "../../../../lib/auth";
 import {NextResponse} from "next/server";import {prisma} from "../../../../lib/prisma";
 export async function GET(){
   const token=cookies().get("gv_session")?.value;
